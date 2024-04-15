@@ -1,3 +1,15 @@
+const { exec } = require('child_process');
+var yourscript = exec('/bin/sh ./checking_if_variables_are_set.sh',
+        (error, stdout, stderr) => {
+            console.log(stdout);
+            console.log(stderr);
+            if (error !== null) {
+                console.log(`HTTP_PORT not found. Set the env variable to proceed`);
+                console.log();
+		process.exit(9);
+            }
+        });
+
 const express = require('express');
 const bodyParser = require('body-parser');
 var QRCode = require('qrcode');
